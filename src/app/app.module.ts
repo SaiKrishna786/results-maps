@@ -7,7 +7,6 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
-import { ConstituencyMapComponent } from './constituency-map/constituency-map.component';
 import { MapService } from './map.service';
 import { PopupService } from './popup.service';
 import { ShapeService } from './shape.service';
@@ -17,7 +16,6 @@ import { NotifierModule } from "angular-notifier";
   declarations: [
     AppComponent,
     MapComponent,
-    ConstituencyMapComponent
   ],
   imports: [
     BrowserModule,
