@@ -111,7 +111,7 @@ export class MapComponent implements OnInit {
   constructor(private mapService: MapService, private shapeService: ShapeService, private notifierService: NotifierService) { }
 
   ngOnInit() {
-    this.initializeMapBoxMap();
+    this.loadTNAC();
   }
 
   dropdownButtonClick() {
@@ -160,10 +160,6 @@ export class MapComponent implements OnInit {
        })
      });
    }
-
-  //  this.buildMapBoxMapWithFormula()
-
-  this.loadTNAC();
   }
 
   loadTNAC() {
@@ -197,6 +193,8 @@ export class MapComponent implements OnInit {
 
     /// Add realtime firebase data on map load
     this.map.on('load', (event) => {
+
+      this.initializeMapBoxMap()
 
       // let layers = this.map.getStyle().layers;
 
@@ -357,29 +355,29 @@ export class MapComponent implements OnInit {
       norotate = true;
     })
 
-    // this.map.on('click', 'district-layer-votes-DMK', (e) => {
-    //   hoverpopup.remove();
-    //   this.setPopup = true;
-    //   // this.popupOpen = !this.popupOpen;
-    //   this.popupOpen = true;
-    //   this.navigation._container.parentNode.className = "mapboxgl-ctrl-top-center";
-    //   norotate = true;
-    //   this.selectedPoleinActiveConstituency = e.features[0].properties;
-    //   this.boothsForSelectedAc = e.features[0].properties.aggregated_booths ? JSON.parse(e.features[0].properties.aggregated_booths) : [];
-    //   this.highlightSelectedPole("dmk_votes");
-    // })
+    this.map.on('click', 'district-layer-votes-DMK', (e) => {
+      hoverpopup.remove();
+      this.setPopup = true;
+      // this.popupOpen = !this.popupOpen;
+      this.popupOpen = true;
+      this.navigation._container.parentNode.className = "mapboxgl-ctrl-top-center";
+      norotate = true;
+      this.selectedPoleinActiveConstituency = e.features[0].properties;
+      this.boothsForSelectedAc = e.features[0].properties.aggregated_booths ? JSON.parse(e.features[0].properties.aggregated_booths) : [];
+      this.highlightSelectedPole("dmk_votes");
+    })
 
-    // this.map.on('click', 'district-layer-votes-ADMK', (e) => {
-    //   hoverpopup.remove();
-    //   this.setPopup = true;
-    //   // this.popupOpen = !this.popupOpen;
-    //   this.popupOpen = true;
-    //   this.navigation._container.parentNode.className = "mapboxgl-ctrl-top-center";
-    //   norotate = true;
-    //   this.selectedPoleinActiveConstituency = e.features[0].properties;
-    //   this.boothsForSelectedAc = e.features[0].properties.aggregated_booths ? JSON.parse(e.features[0].properties.aggregated_booths) : [];
-    //   this.highlightSelectedPole("admk_votes");
-    // })
+    this.map.on('click', 'district-layer-votes-ADMK', (e) => {
+      hoverpopup.remove();
+      this.setPopup = true;
+      // this.popupOpen = !this.popupOpen;
+      this.popupOpen = true;
+      this.navigation._container.parentNode.className = "mapboxgl-ctrl-top-center";
+      norotate = true;
+      this.selectedPoleinActiveConstituency = e.features[0].properties;
+      this.boothsForSelectedAc = e.features[0].properties.aggregated_booths ? JSON.parse(e.features[0].properties.aggregated_booths) : [];
+      this.highlightSelectedPole("admk_votes");
+    })
 
     // Add Marker on Click
     this.map.on('click', 'tn-ac-c15dhe', (e) => {
